@@ -1,14 +1,21 @@
-from tkinter import *
-from tkinter import messagebox
-import matplotlib.pyplot as plt
+try:
+	from tkinter import *
+	from tkinter import messagebox
+	import matplotlib.pyplot as plt
+	import os
+except:
+	try:
+		from tkinter import messagebox
+		from tkinter import *
+		root=Tk()
+		root.withdraw()
+		messagebox.showerror('Error', 'Import Error')
+		quit()
+	except:
+		quit()
 
-#################################################
 
-##               ##
-## START OF VIEW ##
-##               ##
-
-class View:
+class Visualize: #view data on a graph 
 	def __init__(self):
 		self.build_window()
 	def build_window(self):
@@ -53,33 +60,25 @@ class View:
 
 		ax.set_xlabel('Date Measured')
 		ax.set_ylabel('Growth (cm)')
+		try: 
+			days = get_data.find_date(os.getcwd() + '/data/dates.txt')
 
-		days = get_data.find_date(f'data/dates.txt')
-
-		for item in data_fields:
-			growth = get_data.find(f'data/{item.lower()}_data.txt')
-			ax.plot(days, growth, label=item)
+			for item in data_fields:
+				growth = get_data.find(f'data/{item.lower()}_data.txt')
+				ax.plot(days, growth, label=item)
+		except:
+			messagebox.showerror('Error', 'File Not Found')
+			exit()
 
 		ax.legend()
 		plt.show()
 
-##             ##
-## END OF VIEW ##
-##             ##
-
-###########################################################################
-
-##              ##
-## START OF ADD ##
-##              ##
-
-class Add:
+class Add_Data: #get user input and save to .txt files
 	def __init__(self):
 		top = Toplevel()
 		self.top = top
-		
-
 		self.build_window()
+
 	def submit_date(self):
 		date = self.get_date_entry.get()
 		if date == '':
@@ -119,10 +118,6 @@ class Add:
 			with open('data/lowerleg_data.txt', 'a') as file:
 				file.write(str('\n' + entry6))
 				file.close()
-
-
-
-
 	def submit(self):
 		entry1 = self.entry1.get()
 		entry2 = self.entry2.get()
@@ -245,22 +240,15 @@ class Add:
 
 		top.mainloop()
 
-
-##            ##
-## END OF ADD ##
-##            ##
-
-###########################################
-
-class OptionWindow:
+class Start_Window: #first window when opened
 	def __init__(self, root):
 		self.build_window()
 
 	def Button1_press(self):
-		start_add_window = Add()
+		AddData = Add_Data()
 
 	def Button2_press(self):
-		start_view_window = View()
+		ViewData = Visualize()
 		
 
 	def build_window(self):
@@ -295,12 +283,8 @@ class OptionWindow:
 		button2.place(rely=0.4, relx=0.5)
 
 
-##############################
-
 root=Tk()
-newWindow = OptionWindow(root)
+newWindow = Start_Window(root)
 root.mainloop()
-
-
 
 
