@@ -1,5 +1,5 @@
-MYMUSCLE IS A GUI APPLICATION TO VIEW AND TRACK MUSCLE GROWTH
+MyMuscle is GUI based application which allows you to track muscle growth and visualize your progress on a graph.
 
-READ LICENSE.MD FOR MORE INFORMATION ABOUT THE LICENSE
+The user enters data into the GUI and it's then saved into several .txt files. When the user decides to view their progress, the data is then extracted from the .txt files and displayed on a graph.
 
-USING THIS APPLICATION YOU WILL BE ABLE TO ADD SEVERAL AMOUNTS OF DATA, SAVE IT AND VIEW YOUR PROGRESS ON A GRAPH.
+-MIT License-
