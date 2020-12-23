@@ -276,7 +276,6 @@ class OptionWindow:
 		root.title('MyMuscle | Home ')
 
 		root.configure(bg='white')
-		root.iconbitmap('img/icon.ico')
 
 		title_label = Label(root, text='MyMuscle', bg=BG, fg=PRIMARY, font=(FONT1, 25, 'bold'))
 		title_label.pack()
@@ -301,5 +300,7 @@ class OptionWindow:
 root=Tk()
 newWindow = OptionWindow(root)
 root.mainloop()
+
+
 
 
